@@ -1,0 +1,13 @@
+
+Avoid error when downloading python libraries (run once)
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+
+pip install pillow
+
+
+Download Blynk library
+git clone https://github.com/vshymanskyy/blynk-library-python.git
+
+
+sudo apt install -y libcamera-dev
+pip install rpi-libcamera
