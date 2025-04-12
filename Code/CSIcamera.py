@@ -1,7 +1,5 @@
 
 #!/usr/bin/python3
-#sudo apt install -y libcamera-dev
-
 
 import cv2
 from picamera2 import Picamera2

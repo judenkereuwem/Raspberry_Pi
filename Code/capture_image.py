@@ -1,6 +1,8 @@
 
 import cv2
 import os
+from picamera2 import Picamera2
+import time
 
 # Define the folder path
 save_folder = "captured_images"
@@ -10,19 +12,17 @@ if not os.path.exists(save_folder):
     os.makedirs(save_folder)
 
 # Initialize video capture
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 224)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 224)
+#cap = cv2.VideoCapture(0)
+cv2.startWindowThread()
+picam2 = Picamera2()
+picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
+picam2.start()
 
 img_count = 0  # To count and label saved images
 
 while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-
-    # Resize the frame to 224x224
-    frame_resized = cv2.resize(frame, (224, 224))
+    im = picam2.capture_array()
+    frame_resized = cv2.resize(im,(224,224))
 
     # Display the resized frame
     cv2.imshow("Resized Frame", frame_resized)
