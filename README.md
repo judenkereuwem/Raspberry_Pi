@@ -1,3 +1,3 @@
 # Raspberry Pi(5) Resources
 
-- Python codes for interfacing basic components with PI's GPIO.
+https://judeok.wixsite.com/placidlearn/raspberrypi

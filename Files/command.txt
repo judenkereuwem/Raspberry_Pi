@@ -1,0 +1,25 @@
+
+Avoid error when downloading python libraries (run once)
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+
+pip install pillow
+
+
+#Download Blynk library
+git clone https://github.com/vshymanskyy/blynk-library-python.git
+
+#Pi camera:
+sudo apt install -y libcamera-dev
+pip install rpi-libcamera
+
+#Facial recognition:
+pip install imutils
+sudo apt install cmake
+pip install face-recognition
+pip install dlib
+
+pip install pandas
+
+#Membrane keypad:
+sudo nano /boot/firmware/config.txt
+dtoverlay=spi0-0cs
