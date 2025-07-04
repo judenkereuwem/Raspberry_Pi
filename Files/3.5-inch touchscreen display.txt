@@ -1,0 +1,74 @@
+
+✅ Step-by-Step Guide
+1. Boot Your Raspberry Pi Without the Screen First
+Use HDMI monitor and keyboard to set up Raspberry Pi OS (Lite or Desktop).
+
+Ensure internet connection (Ethernet or Wi-Fi).
+
+2. Update and Upgrade
+Open terminal and run:
+
+sudo apt update
+sudo apt full-upgrade -y
+
+3. Identify Your LCD Driver Model
+Check your screen’s back or product listing for a name like LCD35, ILI9486, ST7789, etc. If you're not sure, mention the display model and vendor and I can help you identify the right driver.
+
+4. Enable SPI Interface
+Run:
+
+sudo raspi-config
+Go to Interface Options → SPI → Enable
+
+Reboot afterward:
+
+sudo reboot
+
+5. Install LCD Driver (Common Methods)
+📌 Option A: Manufacturer Script (most common)
+If your screen came with a GitHub link or instruction like “use LCD-show,” run:
+
+git clone https://github.com/goodtft/LCD-show.git
+cd LCD-show/
+chmod +x LCD35-show
+sudo ./LCD35-show
+
+(Replace LCD35-show with the appropriate script name for your screen like LCD35-show-V2 or LCD32-show, depending on your model.)
+
+This will:
+- Install the required driver
+- Modify /boot/config.txt
+- Set up framebuffer rotation
+- Reboot automatically
+
+
+6. Test the Display
+After reboot:
+
+You should see the Raspberry Pi boot splash and desktop (if using Desktop OS).
+
+If it’s just a console (no GUI), install the GUI:
+
+sudo apt install raspberrypi-ui-mods
+
+7. (Optional) Calibrate Touchscreen
+If the touch input is misaligned:
+
+sudo apt install xinput-calibrator
+xinput_calibrator
+
+
+🧪 Test Touch Input
+Use a simple tool to check touch:
+
+sudo apt install evtest
+sudo evtest
+
+Then touch the screen and see if it reports input events.
+
+🛠 Troubleshooting
+Problem				Solution
+Screen stays white/blank	Ensure correct driver is installed; check /boot/config.txt
+Touch not working		Check SPI is enabled; calibrate; try another overlay
+Boot stuck after driver install	Reflash SD card or undo changes via HDMI
+
