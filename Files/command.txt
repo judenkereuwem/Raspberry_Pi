@@ -2,11 +2,19 @@
 Avoid error when downloading python libraries (run once)
 sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
 
+#Image Processing
 pip install pillow
+pip install opencv-python
+pip install tflite-runtime
+
+#Data
+pip install pandas
+pip install scikit-learn
 
 
 #Download Blynk library
 git clone https://github.com/vshymanskyy/blynk-library-python.git
+
 
 #Pi camera:
 sudo apt install -y libcamera-dev
@@ -18,8 +26,17 @@ sudo apt install cmake
 pip install face-recognition
 pip install dlib
 
-pip install pandas
+
+#ADS1115 ADC:
+sudo pip3 install adafruit-circuitpython-ads1x15
+
 
 #Membrane keypad:
 sudo nano /boot/firmware/config.txt
 dtoverlay=spi0-0cs
+
+
+
+crontab -e
+1
+@reboot sleep 50 && /usr/bin/python3 /home/pi/Desktop/project1.py > /home/pi/Desktop project1.log 2>&1 &
